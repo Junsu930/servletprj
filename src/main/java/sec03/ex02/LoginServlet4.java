@@ -1,4 +1,4 @@
-package sec01.ex01;
+package sec03.ex02;
 
 import java.io.IOException;
 import javax.servlet.ServletConfig;
@@ -9,42 +9,51 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class InputServlet
+ * Servlet implementation class LoginServlet4
  */
-@WebServlet("/input")
-public class InputServlet extends HttpServlet {
+@WebServlet("/login4")
+public class LoginServlet4 extends HttpServlet {
 
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-	
 		System.out.println("init 메소드 호출");
 	}
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		request.setCharacterEncoding("UTF-8");
+		System.out.println("dpGet메소드 호출");
+		doHandle(request, response);
+	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doPost메소드 호출");
+		doHandle(request,response);
+	}
+	
+	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		String user_id = request.getParameter("user_id");
+		System.out.println("doHandle 메소드 호출");
 		String user_pw = request.getParameter("user_pw");
-		String[] subject = request.getParameterValues("subject");
-		for(String str : subject) {
-			
-			System.out.println("선택한 과목 : "+ str);
-		}
-		
+		System.out.println("아이디 : " + user_id);
+		System.out.println("비밀번호 : " +  user_pw);
 		
 	}
 
-	
 	/**
 	 * @see Servlet#destroy()
 	 */
 	public void destroy() {
 		System.out.println("destroy 메소드 호출");
 	}
+	
+	
 }
